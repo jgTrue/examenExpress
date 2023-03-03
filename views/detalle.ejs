@@ -1,0 +1,47 @@
+<%- include('template/cabecera', {tituloWeb:'Detalles del luchador'}) %>
+    <div class="container">
+        <h2>Detalles del luchador</h2>
+        <% if(error){ %>
+            <h2>Hay un error</h2>
+        <% } %>
+        <% if(!error){ %>
+            <form id="editar" data-id="<%= luchador._id %>" class="my-2">
+                <input type="number" value="<%= luchador.id %>" class="form-control my-2" name="id" required autofocus>
+                <input type="text" value="<%= luchador.nombre %>" class="form-control my-2" name="nombre" required>
+                <input type="text" value="<%= luchador.alias %>" class="form-control my-2" name="alias" required>
+                <input type="text" value="<%= luchador.division %>" class="form-control my-2" name="division" required>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    Actualizar
+                </button>
+            </form>
+            <hr>
+            <a href="/" class="btn btn-dark btn-block my-2">Volver</a>
+        <% } %>
+    </div>
+
+
+    <script>
+        const formEditar = document.querySelector('#editar');
+        formEditar.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            const id = formEditar.elements['id'].value
+            const nombre = formEditar.elements['nombre'].value
+            const alias = formEditar.elements['alias'].value
+            const division = formEditar.elements['division'].value
+            const _id = formEditar.dataset.id
+            const data = await fetch(`/${_id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, nombre, alias, division })
+            })
+            const res = await data.json()
+            if (res.estado) {
+                window.location.href = '/'
+            } else {
+                console.log(res)
+            }
+        })
+    </script>
+    <%- include("template/footer") %>

@@ -1,0 +1,65 @@
+<%- include('template/cabecera',{tituloWeb: 'Panel de administración' }) %>
+
+  <div class="container m-5">
+    <div class="text-color-white">
+      <a class="btn btn-success m-2 p-2" href="/create">CREAR LUCHADOR</a>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Alias</th>
+          <th scope="col">División</th>
+          <th scope="col">Modificar</th>
+          <th scope="col">Borrar</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% if(arrayLuchador.length> 0) {%>
+          <% arrayLuchador.forEach(luchador=> { %>
+            <tr>
+              <th scope="row">
+                <%= luchador.id %>
+              </th>
+              <td>
+                <%= luchador.nombre %>
+              </td>
+              <td>
+                <%= luchador.alias %>
+              </td>
+              <td>
+                <%= luchador.division %>
+              </td>
+              <td> <a class="btn btn-warning btn-sm" href="/<%= luchador._id %>"> Actualizar </a></td>
+              <td> <button id="eliminar<%= luchador._id %>" class="btn btn-danger btn-sm"
+                  data-id="<%= luchador._id %>">Eliminar</button> </td>
+            </tr>
+            <script>
+              document.getElementById('eliminar<%= luchador._id %>').addEventListener('click', async () => {
+
+                try {
+                  const data = await fetch(`/<%= luchador._id %>`, {
+                    method: 'delete'
+                  })
+                  const res = await data.json()
+                  console.log(res)
+                  if (res.estado) {
+                    window.location.href = '/'
+                  } else {
+                    console.log(res)
+                  }
+                } catch (error) {
+                  console.log(error)
+                }
+              })
+
+            </script>
+            <% }) %>
+              <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <%- include('template/footer') %>
