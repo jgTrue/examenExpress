@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon 01-express",
-    "start": "node 01-express"
+    "dev": "nodemon ufc",
+    "start": "node ufc"
   },
   "keywords": [],
   "author": "",

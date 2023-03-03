@@ -9,6 +9,6 @@ const luchadorSchema = new Schema({
     division: String
 })
 
-const Luchador = mongoose.model('Luchador',luchadorSchema, "luchador");
+const Luchador = mongoose.model('Luchador', luchadorSchema, "luchador");
 
 module.exports = Luchador;

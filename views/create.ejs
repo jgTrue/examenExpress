@@ -1,14 +1,14 @@
 <%- include('template/cabecera', {tituloWeb:'Nuevo luchador'}) %>
-<div class="container">
-    <h2>Crear nuevo Pokémon</h2>
-    <form action="/" class="my-2" method="POST">
-    <input type="number" placeholder="Id" class="form-control my-2" name="id" required autofocus>
-    <input type="text" placeholder="Nombre" class="form-control my-2" name="nombre" required>
-    <input type="text" placeholder="Alias" class="form-control my-2" name="alias" required>
-    <input type="text" placeholder="División" class="form-control my-2" name="division" required>
-    <button type="submit" class="btn btn-dark btn-block">
-    Agregar
-    </button>
-    </form>
+    <div class="container">
+        <h2>Crear nuevo Pokémon</h2>
+        <form action="/" class="my-2" method="POST">
+            <input type="number" placeholder="Id" class="form-control my-2" name="id" required autofocus>
+            <input type="text" placeholder="Nombre" class="form-control my-2" name="nombre" required>
+            <input type="text" placeholder="Alias" class="form-control my-2" name="alias" required>
+            <input type="text" placeholder="División" class="form-control my-2" name="division" required>
+            <button type="submit" class="btn btn-dark btn-block">
+                Agregar
+            </button>
+        </form>
     </div>
-<%- include("template/footer") %>
+    <%- include("template/footer") %>

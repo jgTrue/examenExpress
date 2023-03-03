@@ -3,20 +3,24 @@
         <h2>Detalles del luchador</h2>
         <% if(error){ %>
             <h2>Hay un error</h2>
-        <% } %>
-        <% if(!error){ %>
-            <form id="editar" data-id="<%= luchador._id %>" class="my-2">
-                <input type="number" value="<%= luchador.id %>" class="form-control my-2" name="id" required autofocus>
-                <input type="text" value="<%= luchador.nombre %>" class="form-control my-2" name="nombre" required>
-                <input type="text" value="<%= luchador.alias %>" class="form-control my-2" name="alias" required>
-                <input type="text" value="<%= luchador.division %>" class="form-control my-2" name="division" required>
-                <button type="submit" class="btn btn-primary btn-sm">
-                    Actualizar
-                </button>
-            </form>
-            <hr>
-            <a href="/" class="btn btn-dark btn-block my-2">Volver</a>
-        <% } %>
+            <% } %>
+                <% if(!error){ %>
+                    <form id="editar" data-id="<%= luchador._id %>" class="my-2">
+                        <input type="number" value="<%= luchador.id %>" class="form-control my-2" name="id" required
+                            autofocus>
+                        <input type="text" value="<%= luchador.nombre %>" class="form-control my-2" name="nombre"
+                            required>
+                        <input type="text" value="<%= luchador.alias %>" class="form-control my-2" name="alias"
+                            required>
+                        <input type="text" value="<%= luchador.division %>" class="form-control my-2" name="division"
+                            required>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            Actualizar
+                        </button>
+                    </form>
+                    <hr>
+                    <a href="/" class="btn btn-dark btn-block my-2">Volver</a>
+                    <% } %>
     </div>
 
 

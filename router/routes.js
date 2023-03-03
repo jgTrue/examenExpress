@@ -3,71 +3,71 @@ const router = express.Router();
 const Luchador = require('../models/Luchador');
 
 // Index
-router.get('/',async (req,res)=>{
+router.get('/', async (req, res) => {
 
-    try{
+    try {
         const arrayLuchadoresDB = await Luchador.find();
         console.log(arrayLuchadoresDB);
-        res.render('index',{
+        res.render('index', {
             arrayLuchador: arrayLuchadoresDB
         })
-    }catch(e){
+    } catch (e) {
         console.error(e)
     }
 })
 // Crear
-router.get('/create',(req,res)=>{
+router.get('/create', (req, res) => {
     res.render('create')
 })
 
-router.post('/', async(req, res)=>{
+router.post('/', async (req, res) => {
     const body = req.body
     console.log(body)
-    try{
+    try {
         const ufcDB = new Luchador(body)
         await ufcDB.save()
         res.redirect('/')
-    }catch(error){
+    } catch (error) {
         console.log('error', error)
     }
 })
 // Editar
-router.get('/:id',async(req,res)=>{
+router.get('/:id', async (req, res) => {
     const id = req.params.id
-    try{
-        const ufcDB = await Luchador.findOne({_id: id})
+    try {
+        const ufcDB = await Luchador.findOne({ _id: id })
 
         console.log(ufcDB)
         res.render('detalle', {
             luchador: ufcDB,
             error: false
         })
-    }catch(error){
+    } catch (error) {
         console.log('Se ha producido un error', error)
-        res.render('detalle',{
+        res.render('detalle', {
             error: true,
             mensaje: 'Luchador no encontrado!'
         })
     }
 })
 
-router.put('/:id', async(req, res) => {
+router.put('/:id', async (req, res) => {
     const id = req.params.id;
     const body = req.body;
     console.log(id)
     console.log('body', body)
-    try{
+    try {
         const ufcDB = await Luchador.findByIdAndUpdate(
-            id, body, {useFindAndModify: false}
+            id, body, { useFindAndModify: false }
         )
         console.log(ufcDB)
         res.json({
             estado: true,
             mensaje: 'Luchador editado'
         })
-    }catch(error){
+    } catch (error) {
         console.log(error)
-        res,json({
+        res, json({
             estado: false,
             mensaje: 'Problema al editar el luchador'
         })
@@ -75,25 +75,25 @@ router.put('/:id', async(req, res) => {
 })
 
 // Eliminar
-router.delete('/:id', async(req,res)=>{
+router.delete('/:id', async (req, res) => {
     const id = req.params.id;
     console.log('_id desde backend', id)
-    try{
-        const ufcDB = await Luchador.findByIdAndDelete({_id: id});
+    try {
+        const ufcDB = await Luchador.findByIdAndDelete({ _id: id });
         console.log(ufcDB)
 
-        if(!ufcDB){
+        if (!ufcDB) {
             res.json({
                 estado: false,
                 mensaje: 'No se puede eliminar el luchador.'
             })
-        }else{
+        } else {
             res.json({
                 estado: true,
                 mensaje: 'luchador eliminado.'
             })
         }
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 })
