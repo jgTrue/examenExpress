@@ -1,10 +1,10 @@
 <%- include('template/cabecera',{tituloWeb: 'Panel de administración' }) %>
 
-  <div class="container m-5">
-    <div class="text-color-white">
-      <a class="btn btn-success m-2 p-2" href="/create">CREAR LUCHADOR</a>
+  <div class="container my-5 p-5 col-12">
+    <div class="text-color-white fw-bolder">
+      <a class="btn btn-success bg-gradient m-2 p-2" href="/create"><i class="bi bi-plus-circle mx-2"></i>Agregar luchador</a>
     </div>
-    <table class="table">
+    <table class="table border shadow my-3">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -32,9 +32,9 @@
               <td>
                 <%= luchador.division %>
               </td>
-              <td> <a class="btn btn-warning btn-sm" href="/<%= luchador._id %>"> Actualizar </a></td>
+              <td> <a class="btn btn-warning btn-sm" href="/<%= luchador._id %>"><i class="bi bi-pen"></i> Actualizar </a></td>
               <td> <button id="eliminar<%= luchador._id %>" class="btn btn-danger btn-sm"
-                  data-id="<%= luchador._id %>">Eliminar</button> </td>
+                  data-id="<%= luchador._id %>"><i class="bi bi-trash3"></i> Eliminar</button> </td>
             </tr>
             <script>
               document.getElementById('eliminar<%= luchador._id %>').addEventListener('click', async () => {
